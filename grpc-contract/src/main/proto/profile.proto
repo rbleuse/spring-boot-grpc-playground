@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package playground.profile.v1;
+
+option java_multiple_files = true;
+option java_package = "io.github.rbleuse.playground.contract.profile.v1";
+
+service ProfileService {
+  rpc GetProfile(ProfileRequest) returns (ProfileResponse);
+}
+
+message ProfileRequest {
+  string subject = 1;
+}
+
+message ProfileResponse {
+  string id = 1;
+  string display_name = 2;
+  string source = 3;
+}
