@@ -24,7 +24,7 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 
 	testImplementation("org.springframework.boot:spring-boot-starter-grpc-server-test")
-	testImplementation("io.kotest:kotest-assertions-core:6.1.11")
+	testImplementation("io.kotest:kotest-assertions-core:6.2.1")
 	testImplementation("org.testcontainers:testcontainers-junit-jupiter")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
