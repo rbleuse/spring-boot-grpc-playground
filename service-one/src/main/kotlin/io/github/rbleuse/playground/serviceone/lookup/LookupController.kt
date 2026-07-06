@@ -1,24 +1,28 @@
 package io.github.rbleuse.playground.serviceone.lookup
 
+import io.github.rbleuse.playground.contract.profile.v1.ProfileRequest
+import io.github.rbleuse.playground.contract.profile.v1.ProfileServiceGrpc
 import jakarta.validation.Valid
 import jakarta.validation.constraints.NotBlank
-import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
+import java.util.concurrent.TimeUnit
 
 @RestController
 @RequestMapping("/lookups")
 class LookupController(
-	private val profileClient: ProfileClient,
+	private val profileStub: ProfileServiceGrpc.ProfileServiceBlockingStub,
 ) {
 
 	@PostMapping
-	@ResponseStatus(HttpStatus.OK)
 	fun lookup(@Valid @RequestBody request: LookupRequest): LookupResponse {
-		val profile = profileClient.getProfile(request.subject)
+		val profile = profileStub.withDeadlineAfter(2, TimeUnit.SECONDS).getProfile(
+			ProfileRequest.newBuilder()
+				.setSubject(request.subject)
+				.build(),
+		)
 		return LookupResponse(
 			subject = request.subject,
 			profileId = profile.id,
