@@ -28,6 +28,6 @@ dependencies {
 	testImplementation(project(":service-two"))
 	testImplementation("org.springframework.boot:spring-boot-starter-webmvc-test")
 	testImplementation("org.springframework.boot:spring-boot-starter-grpc-server-test")
-	testImplementation("io.kotest:kotest-assertions-core:6.2.1")
+	testImplementation("io.kotest:kotest-assertions-core:6.2.2")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
