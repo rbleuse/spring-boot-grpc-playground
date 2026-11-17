@@ -11,6 +11,12 @@ java {
 	}
 }
 
+protobuf {
+	plugins {
+		create("grpc")
+	}
+}
+
 dependencies {
 	api("io.grpc:grpc-protobuf")
 	api("io.grpc:grpc-stub")

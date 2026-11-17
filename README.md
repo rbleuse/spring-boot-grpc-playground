@@ -4,6 +4,8 @@ A small multi-module Spring Boot and Kotlin playground that demonstrates service
 
 `service-one` exposes an HTTP endpoint and calls `service-two` through a generated gRPC client. `service-two` implements the gRPC server defined in the shared `grpc-contract` module.
 
+The project uses Spring Boot 4.1.2 with its gRPC starters and dependency management. Following the [Spring gRPC 1.1 migration guide](https://github.com/spring-projects/spring-grpc/wiki/Spring-gRPC-1.1-Migration-Guide), clients are imported explicitly with `@ImportGrpcClients` and configured through `spring.grpc.client.channel.<name>.target`. The contract module declares the Protobuf `grpc` plugin; Spring Boot configures the code generators and aligns their versions with the runtime dependencies.
+
 ## Modules
 
 | Module | Purpose |
