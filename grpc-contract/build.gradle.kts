@@ -12,8 +12,14 @@ java {
 }
 
 protobuf {
+	// shortcut: Boot 4.2.0 misses empty generator versions; remove when automatic alignment is fixed.
+	protoc {
+		artifact = "com.google.protobuf:protoc:${dependencyManagement.importedProperties.getValue("protobuf-java.version")}"
+	}
 	plugins {
-		create("grpc")
+		create("grpc") {
+			artifact = "io.grpc:protoc-gen-grpc-java:${dependencyManagement.importedProperties.getValue("grpc-java.version")}"
+		}
 	}
 }
 
